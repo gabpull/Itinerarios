@@ -385,7 +385,135 @@ button { background: none; border: 0; padding: 0; cursor: pointer; }
 .h3 {
   font-size: 14px;
   font-weight: 700;
+  margin: 0;
+}
+
+.h3-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
   margin: 16px 2px 8px;
+  flex-wrap: wrap;
+}
+
+.h3-files {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.h3-files a {
+  color: var(--red);
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 8px;
+  align-items: start;
+}
+
+.sos-people {
+  margin-top: 14px;
+}
+
+.sos-title {
+  margin: 0 2px 8px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--tx);
+}
+
+.sos-grid > section {
+  min-width: 0;
+}
+
+.sos-grid .h3-row {
+  margin: 0 0 6px;
+}
+
+.sos-grid .h3 {
+  font-size: 13px;
+}
+
+.sos-grid .list {
+  margin-bottom: 0;
+}
+
+.sos-grid .row {
+  padding: 8px 9px;
+  border-left-width: 3px;
+}
+
+.sos-grid .row.call {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+.sos-grid .row.call .nm {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.sos-grid .row.call .call-btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #ffe8e8;
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.sos-grid .row.call .call-info {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid var(--mut);
+  color: var(--mut);
+  font-size: 11px;
+  font-weight: 800;
+  font-style: italic;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.sos-grid .row.call .call-info.on {
+  border-color: var(--red);
+  color: #fff;
+  background: var(--red);
+}
+
+.sos-grid .row.call .call-tag {
+  flex: 1 1 100%;
+  margin: 0;
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: #f3f3f8;
+  color: var(--mut);
+  font-size: 11px;
+  line-height: 1.3;
 }
 
 .list {
@@ -598,11 +726,39 @@ button { background: none; border: 0; padding: 0; cursor: pointer; }
   align-items: center;
   justify-content: center;
   gap: 2px;
-  padding: 0 2px;
-  font-size: 10.5px;
+  padding: 0 1px;
+  font-size: 9.5px;
   line-height: 1.1;
   color: var(--mut);
   position: relative;
+}
+
+.row.call {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.row.call .nm {
+  font-size: 13px;
+}
+
+.row.call .call-btn {
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.row.call .dt {
+  flex: 1 1 100%;
+  margin-top: 0;
+  font-size: 11px;
 }
 
 .fx { display: grid; gap: 12px; }

@@ -1,12 +1,14 @@
-const CACHE = "japon-itinerario-v25";
+const CACHE = "japon-itinerario-v40";
 const FILES = [
   "./",
   "./index.html",
-  "./css/styles.css?v=25",
-  "./js/app.js?v=25",
-  "./js/itinerary.js?v=25",
+  "./css/styles.css?v=40",
+  "./js/app.js?v=40",
+  "./js/itinerary.js?v=40",
   "./manifest.webmanifest",
   "./icon.svg",
+  "./docs/chente-tarjeta-seguro.pdf",
+  "./docs/chente-poliza-seguro.pdf",
   "./audio/p01.mp3",
   "./audio/p02.mp3",
   "./audio/p03.mp3",

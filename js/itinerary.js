@@ -2202,5 +2202,66 @@ window.ITINERARY = {
       { name: "Clima del Monte Fuji", url: "https://www.fuji-san.info/en/" },
       { name: "Guía de pases", url: "https://www.japan-guide.com/e/e2357.html" }
     ]
+  },
+  emergencies: {
+    japan: [
+      { name: "Policía", phone: "110", dial: "110", note: "Accidentes, robos o delitos" },
+      { name: "Ambulancia / fuego", phone: "119", dial: "119", note: "Ambulancia: «Kyūkyū desu» · Fuego: «Kaji desu»" }
+    ],
+    embassy: [
+      {
+        name: "Embajada CR · Tokio",
+        phone: "+81 3 3486-1812",
+        dial: "+81334861812",
+        note: "Nishi-Azabu, Minato-ku"
+      }
+    ],
+    insurance: [
+      {
+        name: "Asistencia",
+        phone: "+34 91 189-5152",
+        dial: "+34911895152",
+        note: "Línea principal desde Japón"
+      },
+      {
+        name: "Asistencia",
+        phone: "+1 407 264-7118",
+        dial: "+14072647118",
+        note: "Alt. +1 305 590-8016 · WA +54 9 11 6750-2557"
+      }
+    ],
+    people: [
+      {
+        who: "Chente (Gabriel)",
+        policy: "INS 0220VIA008227800 · 4–23 oct · US$50.000",
+        files: [
+          { name: "Tarjeta", url: "docs/chente-tarjeta-seguro.pdf" },
+          { name: "Póliza", url: "docs/chente-poliza-seguro.pdf" }
+        ],
+        contacts: [
+          { name: "Rogelio", phone: "8371-1944", dial: "+50683711944", note: "Rogelio Alvarado Vargas (Padre)" },
+          { name: "Karen", phone: "8952-9418", dial: "+50689529418", note: "Karen Alvarado Murillo (Hermana)" }
+        ]
+      },
+      {
+        who: "Dani",
+        policy: "",
+        contacts: [
+          { name: "Margarita", phone: "8812-4536", dial: "+50688124536", note: "Madre" }
+        ]
+      },
+      {
+        who: "Marco",
+        policy: "",
+        contacts: [
+          { name: "Esteban", phone: "8791-7444", dial: "+50687917444", note: "Hermano" }
+        ]
+      },
+      { who: "Mary", policy: "", contacts: [
+          { name: "Margarita", phone: "8812-4536", dial: "+50688124536", note: "Madre" }
+        ] },
+      { who: "Nath", policy: "", contacts: [] },
+      { who: "Caro", policy: "", contacts: [] }
+    ]
   }
 };

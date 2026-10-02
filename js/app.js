@@ -58,6 +58,7 @@
     screenShops: document.getElementById("screen-shops"),
     screenPhrases: document.getElementById("screen-phrases"),
     screenFood: document.getElementById("screen-food"),
+    screenSos: document.getElementById("screen-sos"),
     screenYen: document.getElementById("screen-yen"),
     yenRate: document.getElementById("yen-rate"),
     yenAmount: document.getElementById("yen-amount"),
@@ -79,6 +80,7 @@
     navPhrases: document.getElementById("nav-phrases"),
     navFood: document.getElementById("nav-food"),
     navYen: document.getElementById("nav-yen"),
+    navSos: document.getElementById("nav-sos"),
     modal: document.getElementById("phrase-modal"),
     modalKana: document.getElementById("modal-kana"),
     modalJp: document.getElementById("modal-jp"),
@@ -94,7 +96,7 @@
     const found = days.findIndex(function (day) { return day.date === savedPlace.date; });
     if (found >= 0) index = found;
   }
-  let view = savedPlace && ["day", "guide", "shops", "phrases", "food", "yen"].indexOf(savedPlace.view) >= 0 ? savedPlace.view : "day";
+  let view = savedPlace && ["day", "guide", "shops", "phrases", "food", "yen", "sos"].indexOf(savedPlace.view) >= 0 ? savedPlace.view : "day";
   let hideShops = loadHideShops();
   let foodCity = savedFoodCity(savedPlace);
   let doneShops = loadDoneShops();
@@ -116,6 +118,7 @@
   el.navPhrases.addEventListener("click", function () { setView("phrases"); });
   el.navFood.addEventListener("click", function () { setView("food"); });
   el.navYen.addEventListener("click", function () { setView("yen"); });
+  el.navSos.addEventListener("click", function () { setView("sos"); });
   el.yenRate.addEventListener("input", function () { paintYen("yen"); });
   el.yenAmount.addEventListener("input", function () {
     groupAmount(el.yenAmount);
@@ -181,6 +184,7 @@
   renderShops();
   renderPhrases();
   renderFood();
+  renderSos();
   if (view === "day") render(savedPlace ? { keepScroll: true } : undefined);
   else setView(view, { keepScroll: true });
   restoreScroll();
@@ -351,11 +355,13 @@
     el.screenPhrases.hidden = view !== "phrases";
     el.screenFood.hidden = view !== "food";
     el.screenYen.hidden = view !== "yen";
+    el.screenSos.hidden = view !== "sos";
     el.navDay.classList.toggle("on", onItinerary);
     el.navShops.classList.toggle("on", view === "shops");
     el.navPhrases.classList.toggle("on", view === "phrases");
     el.navFood.classList.toggle("on", view === "food");
     el.navYen.classList.toggle("on", view === "yen");
+    el.navSos.classList.toggle("on", view === "sos");
     if (view === "day") render(keep ? { keepScroll: true } : undefined);
     if (view === "yen") ensureSpot();
     if (!keep) window.scrollTo(0, 0);
@@ -1194,15 +1200,130 @@
     });
   }
 
-  function listBlock(title, cards) {
+  function renderSos() {
+    const root = el.screenSos;
+    const bag = data.emergencies || {};
+    root.replaceChildren();
+    const lead = document.createElement("p");
+    lead.className = "lead";
+    lead.textContent = "Tocá el número para llamar.";
+    root.append(lead);
+
+    const official = document.createElement("div");
+    official.className = "sos-grid";
+    official.append(listBlock("En Japón", (bag.japan || []).map(callCard)));
+    official.append(listBlock("Embajada", (bag.embassy || []).map(callCard)));
+    const insure = bag.insurance || [];
+    if (insure[0]) official.append(listBlock("Póliza INS Japón", [callCard(insure[0])]));
+    if (insure[1]) official.append(listBlock("Póliza INS USA", [callCard(insure[1])]));
+    root.append(official);
+
+    const peopleWrap = document.createElement("div");
+    peopleWrap.className = "sos-people";
+    const peopleTitle = document.createElement("h2");
+    peopleTitle.className = "sos-title";
+    peopleTitle.textContent = "Contacto de emergencia";
+    const people = document.createElement("div");
+    people.className = "sos-grid";
+    (bag.people || []).forEach(function (person) {
+      const cards = (person.contacts || []).map(callCard);
+      if (!cards.length) {
+        const empty = document.createElement("article");
+        empty.className = "row call";
+        const miss = document.createElement("div");
+        miss.className = "dt";
+        miss.textContent = "Falta contacto";
+        empty.append(miss);
+        cards.push(empty);
+      }
+      if (person.policy) {
+        const pol = document.createElement("article");
+        pol.className = "row call";
+        const meta = document.createElement("div");
+        meta.className = "dt";
+        meta.textContent = person.policy;
+        pol.append(meta);
+        cards.push(pol);
+      }
+      people.append(listBlock(person.who, cards, person.files));
+    });
+    peopleWrap.append(peopleTitle, people);
+    root.append(peopleWrap);
+  }
+
+  function callCard(row) {
+    const card = document.createElement("article");
+    card.className = "row call";
+    const head = document.createElement("div");
+    head.className = "nm";
+    head.textContent = row.name;
+    card.append(head);
+    if (row.dial && row.phone) {
+      const link = document.createElement("a");
+      link.className = "call-btn";
+      link.href = "tel:" + row.dial;
+      link.textContent = row.phone;
+      link.setAttribute("aria-label", "Llamar a " + row.name + " " + row.phone);
+      card.append(link);
+    }
+    if (row.note) {
+      const tip = document.createElement("button");
+      tip.type = "button";
+      tip.className = "call-info";
+      tip.setAttribute("aria-label", "Más info de " + row.name);
+      tip.setAttribute("aria-expanded", "false");
+      tip.textContent = "i";
+      const note = document.createElement("div");
+      note.className = "call-tag";
+      note.hidden = true;
+      note.textContent = row.note;
+      tip.addEventListener("click", function (event) {
+        event.preventDefault();
+        const open = note.hidden;
+        el.screenSos.querySelectorAll(".call-tag").forEach(function (tag) {
+          tag.hidden = true;
+        });
+        el.screenSos.querySelectorAll(".call-info").forEach(function (btn) {
+          btn.setAttribute("aria-expanded", "false");
+          btn.classList.remove("on");
+        });
+        if (open) {
+          note.hidden = false;
+          tip.setAttribute("aria-expanded", "true");
+          tip.classList.add("on");
+        }
+      });
+      card.append(tip, note);
+    }
+    return card;
+  }
+
+  function listBlock(title, cards, files) {
     const block = document.createElement("section");
+    const head = document.createElement("div");
+    head.className = "h3-row";
     const h = document.createElement("h3");
     h.className = "h3";
     h.textContent = title;
+    head.append(h);
+    if (files && files.length) {
+      const docs = document.createElement("div");
+      docs.className = "h3-files";
+      files.forEach(function (file) {
+        const a = document.createElement("a");
+        a.href = file.url;
+        a.download = "";
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = file.name;
+        docs.append(a);
+      });
+      head.append(docs);
+    }
     const list = document.createElement("div");
     list.className = "list";
     cards.forEach(function (card) { list.append(card); });
-    block.append(h, list);
+    block.append(head, list);
     return block;
   }
 
