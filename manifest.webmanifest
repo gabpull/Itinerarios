@@ -1,0 +1,19 @@
+{
+  "name": "Japón · octubre 2026",
+  "short_name": "Japón",
+  "description": "Itinerario del viaje a Japón, día por día.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3efe6",
+  "theme_color": "#243e66",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
