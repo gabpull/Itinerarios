@@ -3,57 +3,142 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#243e66">
+  <meta name="theme-color" content="#22233a">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="description" content="Itinerario del viaje a Japón, octubre 2026. Línea de tiempo por día, con mapas.">
-  <title>Japón · octubre 2026</title>
+  <meta name="description" content="Itinerario del viaje a Japón, octubre 2026. Día por día, con mapas.">
+  <title>Japón 26</title>
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon.svg">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=25">
 </head>
 <body>
   <div class="app">
     <header class="top">
-      <div class="brand-row">
-        <p class="brand">Japón <span lang="ja">日本</span></p>
-        <nav class="tabs" aria-label="Secciones">
-          <button type="button" id="tab-day" class="tab is-on" aria-pressed="true">Días</button>
-          <button type="button" id="tab-guide" class="tab" aria-pressed="false">Guía</button>
-        </nav>
-      </div>
-
-      <div id="day-head">
-        <button type="button" id="prev" class="day-nav">
-          <span aria-hidden="true">↑</span> Día anterior
-        </button>
-        <div id="swipe-zone" class="date-block">
-          <p id="weekday" class="weekday"></p>
-          <h1 id="date-label"></h1>
-          <p id="city-label" class="city"></p>
-          <p id="who-label" class="who"></p>
-        </div>
-        <div id="strip" class="strip" role="tablist" aria-label="Días del viaje"></div>
-        <div id="now" class="now" hidden></div>
-      </div>
+      <span class="sun" aria-hidden="true"></span>
+      <h1>Japón <span lang="ja">日本</span> <span class="sub">· oct 2026</span></h1>
+      <p id="status" class="status"></p>
     </header>
 
-    <main id="screen-day">
-      <p id="summary" class="summary"></p>
-      <div id="stay" class="stay"></div>
-      <ul id="tips" class="tips"></ul>
-      <ol id="timeline" class="timeline"></ol>
-    </main>
+    <div class="wrap">
+      <div id="seg" class="seg">
+        <button type="button" id="tab-day" class="on" aria-pressed="true">Días</button>
+        <button type="button" id="tab-guide" aria-pressed="false">Reservas y pases</button>
+      </div>
 
-    <main id="screen-guide" hidden></main>
+      <div id="screen-day">
+        <div id="strip" class="rail" role="tablist" aria-label="Días del viaje"></div>
+        <div class="shop-row">
+          <button type="button" id="toggle-shops" class="shop-toggle" role="switch" aria-checked="true">
+            <span>Tiendas</span>
+            <span class="shop-switch" aria-hidden="true"><span class="shop-knob"></span></span>
+          </button>
+        </div>
+        <div id="now" class="now" hidden></div>
+        <article id="day-card" class="day"></article>
+        <div class="pager">
+          <button type="button" id="prev">‹ Día anterior</button>
+          <button type="button" id="next">Día siguiente ›</button>
+        </div>
+        <p class="hint">Izquierda: día siguiente · Derecha: día anterior</p>
+      </div>
 
-    <button type="button" id="next" class="next-btn">
-      Día siguiente <span aria-hidden="true">↓</span>
-    </button>
+      <div id="screen-guide" hidden></div>
+      <div id="screen-shops" hidden></div>
+      <div id="screen-phrases" hidden></div>
+      <div id="screen-food" hidden></div>
+      <div id="screen-yen" hidden>
+        <p class="lead">El cambio se guarda en este teléfono y funciona sin internet. Arranca en ₡2,90 por yen, el de las reservas.</p>
+        <div class="fx">
+          <div class="fx-rate">
+            <span class="fx-kicker">Colones por ¥1 <a class="fx-link" href="https://www.google.com/search?q=1+yen+a+colones" target="_blank" rel="noopener noreferrer">Ver cambio</a></span>
+            <input id="yen-rate" inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-label="Colones por un yen">
+          </div>
+          <div class="fx-pair">
+            <label>
+              <span>Yenes</span>
+              <input id="yen-amount" inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Monto en yenes">
+            </label>
+            <label>
+              <span>Colones</span>
+              <input id="crc-amount" inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Monto en colones">
+            </label>
+          </div>
+          <p class="fx-out" id="yen-out" aria-live="polite">
+            <strong id="yen-crc-text">₡0</strong>
+            <span id="yen-eq">¥0</span>
+          </p>
+        </div>
+        <div class="wx" aria-label="Hora y temperatura">
+          <div class="wx-head">
+            <p class="fx-kicker">Hora</p>
+            <button type="button" id="time-now">Hora actual</button>
+          </div>
+          <div class="fx-pair">
+            <div class="wx-card">
+              <span>Costa Rica</span>
+              <input type="time" id="time-cr" aria-label="Hora en Costa Rica">
+              <small id="time-cr-day"></small>
+            </div>
+            <div class="wx-card">
+              <span>Japón</span>
+              <input type="time" id="time-jp" aria-label="Hora en Japón">
+              <small id="time-jp-day"></small>
+            </div>
+          </div>
+          <p class="fx-kicker">Temperatura</p>
+          <div class="fx-pair">
+            <div class="wx-card">
+              <span>Costa Rica</span>
+              <b id="temp-cr">—</b>
+              <small>San José</small>
+            </div>
+            <div class="wx-card">
+              <span class="wx-where">Donde estás <em id="here-place" hidden></em></span>
+              <b id="temp-here">—</b>
+              <button type="button" id="here-locate">Ubicar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav" aria-label="Secciones">
+      <button type="button" id="nav-day" class="on">
+        <span class="ic" aria-hidden="true">🗓️</span>
+        Itinerario
+      </button>
+      <button type="button" id="nav-shops">
+        <span class="ic" aria-hidden="true">🛍️</span>
+        Compras
+      </button>
+      <button type="button" id="nav-phrases">
+        <span class="ic" aria-hidden="true">💬</span>
+        Vocabulario
+      </button>
+      <button type="button" id="nav-food">
+        <span class="ic" aria-hidden="true">🍜</span>
+        Restaurantes
+      </button>
+      <button type="button" id="nav-yen">
+        <span class="ic" aria-hidden="true">💴</span>
+        Útiles
+      </button>
+    </nav>
+
+    <div id="phrase-modal" class="big" hidden>
+      <div>
+        <p id="modal-kana" class="jp"></p>
+        <p id="modal-jp" class="roma"></p>
+        <p id="modal-es" class="es"></p>
+        <button type="button" id="modal-play" class="listen">Escuchar</button>
+        <small>Tocá afuera para cerrar</small>
+      </div>
+    </div>
   </div>
 
-  <script src="js/itinerary.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/itinerary.js?v=25"></script>
+  <script src="js/app.js?v=25"></script>
 </body>
 </html>

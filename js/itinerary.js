@@ -291,7 +291,11 @@ window.ITINERARY = {
         maps: "Namba, Osaka"
       },
       pass: "Osaka Amazing Pass · se usa el 9 y el 10",
-      tips: ["Lleva efectivo para restaurantes pequeños.", "El almuerzo en Kuromon conviene dejarlo en 45–60 min."],
+      tips: [
+        "Lleva efectivo para restaurantes pequeños.",
+        "El almuerzo en Kuromon conviene dejarlo en 45–60 min.",
+        "Las tarjetas naranjas son tiendas recomendadas. Si solo da tiempo a una de Godzilla, elijan la de Shinsaibashi PARCO."
+      ],
       events: [
         {
           time: "06:30",
@@ -347,6 +351,18 @@ window.ITINERARY = {
           badges: ["Osaka Amazing Pass"]
         },
         {
+          time: "15:20",
+          approx: true,
+          type: "tienda",
+          area: "Tarde",
+          title: "Godzilla Store Umeda",
+          hint: "Parada corta al bajar del mirador. NU Chayamachi está al lado de Umeda. Si el mirador se alarga, sáltenla y vayan a la de Shinsaibashi, que es la mejor de las dos.",
+          detail: "Piso 7 de NU Chayamachi, 10-12 Chayamachi. Unos 15–20 min. A las 16:00 hay que estar en Shinsaibashi.",
+          maps: "Godzilla Store Umeda NU Chayamachi Osaka",
+          mapsUrl: "https://www.google.com/maps/search/?api=1&query=Godzilla+Store+Umeda+NU+Chayamachi+10-12+Chayamachi+Osaka",
+          badges: ["Recomendada"]
+        },
+        {
           time: "16:00",
           type: "actividad",
           area: "Tarde",
@@ -356,13 +372,35 @@ window.ITINERARY = {
           badges: []
         },
         {
+          time: "17:00",
+          type: "tienda",
+          area: "Tarde",
+          title: "Godzilla Store Osaka",
+          hint: "La mejor hora para Godzilla en Osaka. Daimaru y PARCO están en la misma zona, y hasta Dotonbori (19:30) hay margen.",
+          detail: "Shinsaibashi PARCO, piso 6. 1-8-3 Shinsaibashisuji. Unos 45 min alcanzan.",
+          maps: "Godzilla Store Osaka Shinsaibashi PARCO",
+          mapsUrl: "https://www.google.com/maps/search/?api=1&query=Godzilla+Store+Osaka+Shinsaibashi+PARCO+1-8-3+Shinsaibashisuji",
+          badges: ["Recomendada"]
+        },
+        {
           time: "19:30",
           type: "actividad",
           area: "Noche",
           title: "Dotonbori",
-          detail: "El barrio y los alrededores.",
+          detail: "El barrio y los alrededores. Don Quijote está en esta misma calle.",
           maps: "Dotonbori, Osaka",
           badges: ["Gratis"]
+        },
+        {
+          time: "19:45",
+          type: "tienda",
+          area: "Noche",
+          title: "Don Quijote Dotonbori",
+          hint: "Entren al llegar a Dotonbori, antes de la cena de las 20:30. La tienda sigue abierta tarde si prefieren volver después de comer.",
+          detail: "Sobre Midousuji, en el propio Dotonbori. Unos 30 min. Queda de camino a Hozenji.",
+          maps: "Don Quijote Dotonbori Osaka",
+          mapsUrl: "https://www.google.com/maps/search/?api=1&query=Don+Quijote+Dotonbori+Midousuji+Osaka",
+          badges: ["Recomendada"]
         },
         {
           time: "20:30",
@@ -405,7 +443,8 @@ window.ITINERARY = {
       pass: "Osaka Amazing Pass · segundo día",
       tips: [
         "Sasayama está a 1 h 30 min–2 h de Osaka centro.",
-        "La entrada común de 4 sitios de Sasayama se paga allá: ¥1.000 por persona."
+        "La entrada común de 4 sitios de Sasayama se paga allá: ¥1.000 por persona.",
+        "En Nipponbashi, Jungle y Mandarake van a las 16:00 y 17:00. El PDF deja Denden Town a las 18:00 y teamLab a las 18:30."
       ],
       events: [
         {
@@ -496,7 +535,7 @@ window.ITINERARY = {
           type: "actividad",
           area: "Tarde",
           title: "Torre Tsutenkaku",
-          detail: "Con el pase, 9:00–21:45 (última entrada 21:15).",
+          detail: "Con el pase, 9:00–21:45 (última entrada 21:15). Al bajar, Nipponbashi queda a unos 10 minutos a pie.",
           maps: "Tsutenkaku Tower, Osaka",
           badges: ["Osaka Amazing Pass"]
         },
@@ -504,16 +543,38 @@ window.ITINERARY = {
           type: "actividad",
           area: "Tarde",
           title: "Tower Slider",
-          detail: "En Tsutenkaku. Con el pase, 9:30–20:30 (última entrada 20:00). Sin hora fija.",
+          detail: "En Tsutenkaku. Con el pase, 9:30–20:30 (última entrada 20:00). Si lo hacen, que sea rápido: a las 16:00 empieza Denden Town.",
           maps: "Tsutenkaku Tower, Osaka",
           badges: ["Osaka Amazing Pass"]
         },
         {
+          time: "16:00",
+          type: "tienda",
+          area: "Nipponbashi",
+          title: "Jungle Mecha Store",
+          hint: "La mejor hora del barrio: acaban de estar en Shinsekai y teamLab no abre hasta las 18:45. Empiecen por aquí.",
+          detail: "Macross y robots. Nipponbashi 3-4-16, dentro de Denden Town. Unos 45 min.",
+          maps: "Jungle Fantastic Machinery Museum Nipponbashi Osaka",
+          mapsUrl: "https://www.google.com/maps/search/?api=1&query=Jungle+Fantastic+Machinery+Museum+Nipponbashi+3-4-16+Osaka",
+          badges: ["Recomendada"]
+        },
+        {
+          time: "17:00",
+          type: "tienda",
+          area: "Nipponbashi",
+          title: "Mandarake Grand Chaos",
+          hint: "A una calle de Jungle, todavía dentro de Denden Town. El barrio sigue en el plan a las 18:00 y teamLab abre a las 18:45.",
+          detail: "Figuras y manga. Nipponbashi 4-12-6. Unos 40 min.",
+          maps: "Mandarake Grand Chaos Nipponbashi Osaka",
+          mapsUrl: "https://www.google.com/maps/search/?api=1&query=Mandarake+Grand+Chaos+Nipponbashi+4-12-6+Osaka",
+          badges: ["Recomendada"]
+        },
+        {
           time: "18:00",
           type: "actividad",
-          area: "Tarde",
+          area: "Nipponbashi",
           title: "Nipponbashi Denden Town",
-          detail: "Tiendas de anime, videojuegos y manga.",
+          detail: "Barrio de anime, videojuegos y manga. Jungle y Mandarake ya están en esta zona. teamLab abre a las 18:45 en Nagai, así que no se alarguen.",
           maps: "Nipponbashi Denden Town, Osaka",
           badges: ["Gratis"]
         },
@@ -1180,7 +1241,7 @@ window.ITINERARY = {
       pass: "Fuji Hakone Pass (último tramo)",
       tips: [
         "De Hakone a Kamakura hay cerca de 1 h 45 min.",
-        "Shinjuku Gyoen: última entrada 16:00, cierra 16:30."
+        "Shinjuku Gyoen: última entrada 16:00, cierra 16:30. Al salir, la Godzilla Store de Marui Annex queda a unos minutos."
       ],
       events: [
         {
@@ -1263,6 +1324,17 @@ window.ITINERARY = {
           badges: ["Pagar allá"]
         },
         {
+          time: "17:00",
+          type: "tienda",
+          area: "Shinjuku",
+          title: "Godzilla Store Tokyo",
+          hint: "La mejor hora: el jardín cierra a las 16:30 y la tienda está en Marui Annex, a unos minutos de Shinjuku. De noche ya puede estar cerrada. La cabeza del hotel déjenla para más tarde.",
+          detail: "Shinjuku Marui Annex, piso 1. 3-1-26 Shinjuku. Unos 40 min.",
+          maps: "Godzilla Store Tokyo Shinjuku Marui Annex",
+          mapsUrl: "https://www.google.com/maps/search/?api=1&query=Godzilla+Store+Tokyo+Shinjuku+Marui+Annex+3-1-26",
+          badges: ["Recomendada"]
+        },
+        {
           type: "actividad",
           area: "Shinjuku",
           title: "Edificio del Gobierno Metropolitano",
@@ -1287,12 +1359,15 @@ window.ITINERARY = {
           badges: ["Gratis"]
         },
         {
-          type: "actividad",
+          type: "tienda",
+          time: "20:30",
           area: "Noche",
-          title: "Kabukicho, calle Godzilla",
-          detail: "Parada secundaria.",
-          maps: "Godzilla Head Kabukicho, Shinjuku",
-          badges: ["Gratis"]
+          title: "Hotel Gracery Shinjuku",
+          hint: "La mejor hora es de noche, sobre las 20:30, cuando ya estén en Kabukicho. La cabeza está en la fachada y se ve desde la calle. La tienda de Marui es la de la tarde.",
+          detail: "1-19-1 Kabukicho. La cabeza de Godzilla ruge sobre la calle. Unos 15 min, sin entrar al hotel.",
+          maps: "Hotel Gracery Shinjuku Kabukicho",
+          mapsUrl: "https://www.google.com/maps/search/?api=1&query=Hotel+Gracery+Shinjuku+1-19-1+Kabukicho",
+          badges: ["Recomendada"]
         },
         {
           type: "hospedaje",
@@ -1445,7 +1520,7 @@ window.ITINERARY = {
       pass: "Tokyo Subway Pass, si lo están usando",
       tips: [
         "Evitar hora pico: 7:30–9:30 y 17:30–19:30.",
-        "En Akihabara hay comidas completas por ¥600–¥1.000 bajo la estación.",
+        "En Akihabara, el orden a pie es Yodobashi, luego AmiAmi y Tamashii. Nakano Broadway es un desvío: solo si las figuras antiguas importan más que recorrer Akihabara con calma.",
         "Eorzea Café: el PDF pedía confirmar la reserva (la hoja decía reservar el 19 de setiembre)."
       ],
       events: [
@@ -1481,15 +1556,26 @@ window.ITINERARY = {
           type: "actividad",
           area: "Ginza",
           title: "Kabuki-za y Ginza Six",
-          detail: "Ver Kabuki-za por fuera o un show corto. Azotea de Ginza Six. Paradas secundarias. Cerca: Tsukijigawa Ginza Park.",
+          detail: "Ver Kabuki-za por fuera o un show corto, y la azotea de Ginza Six. Paradas secundarias. Cerca: Tsukijigawa Ginza Park.",
           maps: "Kabukiza Theatre, Tokyo",
           badges: ["Gratis"]
+        },
+        {
+          time: "13:00",
+          type: "tienda",
+          area: "Desvío",
+          title: "Nakano Broadway",
+          hint: "No está en Akihabara: son unos 30 min en tren desde Ginza. Muchas tiendas abren al mediodía, así que las 13:00 es la primera hora útil. Si van, coman algo rápido allí y estén de vuelta para Electric Town a las 15:00. Si no quieren cruzar la ciudad, sáltenla.",
+          detail: "Figuras antiguas. 5-52-15 Nakano. Calculen 45–60 min dentro.",
+          maps: "Nakano Broadway Tokyo",
+          mapsUrl: "https://www.google.com/maps/search/?api=1&query=Nakano+Broadway+5-52-15+Nakano+Tokyo",
+          badges: ["Desvío"]
         },
         {
           type: "comida",
           area: "Akihabara",
           title: "Almuerzo en Akihabara",
-          detail: "Restaurantes baratos debajo de la estación o en edificios pequeños. Comidas de ¥600 a ¥1.000.",
+          detail: "Restaurantes baratos debajo de la estación o en edificios pequeños. Comidas completas de ¥600 a ¥1.000. Si van a Nakano, coman algo rápido allí.",
           maps: "Akihabara Station, Tokyo",
           badges: []
         },
@@ -1498,9 +1584,42 @@ window.ITINERARY = {
           type: "actividad",
           area: "Akihabara",
           title: "Akihabara Electric Town",
-          detail: "Animate y tiendas de anime y electrónica. Opcional: Nakano Broadway o Ikebukuro, y Akihabara Gachapon Hall.",
+          detail: "Animate y tiendas de anime y electrónica. Gachapon Hall es opcional y está en el mismo barrio. Ikebukuro queda como alternativa si sobra el día.",
           maps: "Akihabara Electric Town, Tokyo",
           badges: ["Gratis"]
+        },
+        {
+          time: "15:30",
+          type: "tienda",
+          area: "Akihabara",
+          title: "Yodobashi Camera Akiba",
+          hint: "Después de Electric Town. Es el edificio grande de la estación, a pie de Animate, antes de AmiAmi.",
+          detail: "Electrónica y juguetes. Unos 40 min, y de ahí se camina a Radio Kaikan.",
+          maps: "Yodobashi Camera Multimedia Akiba",
+          mapsUrl: "https://www.google.com/maps/search/?api=1&query=Yodobashi+Camera+Multimedia+Akiba",
+          badges: ["Recomendada"]
+        },
+        {
+          time: "16:10",
+          type: "tienda",
+          area: "Akihabara",
+          title: "AmiAmi",
+          hint: "A pocos minutos a pie de Yodobashi. Es la parada de figuras del barrio, antes de que cierren camino al café de las 18:30.",
+          detail: "Radio Kaikan, piso 4. 1-15-16 Sotokanda. Unos 40 min.",
+          maps: "AmiAmi Akihabara Radio Kaikan",
+          mapsUrl: "https://www.google.com/maps/search/?api=1&query=AmiAmi+Akihabara+Radio+Kaikan+1-15-16+Sotokanda",
+          badges: ["Recomendada"]
+        },
+        {
+          time: "16:45",
+          type: "tienda",
+          area: "Akihabara",
+          title: "Tamashii Nations Store Tokyo",
+          hint: "Sigue en Akihabara, a pie desde Radio Kaikan. Cierren sobre las 17:30 para llegar a Eorzea Café a las 18:30.",
+          detail: "1-1 Kanda Hanaokacho. Figuras Bandai. Unos 40 min.",
+          maps: "TAMASHII NATIONS STORE TOKYO Akihabara",
+          mapsUrl: "https://www.google.com/maps/search/?api=1&query=TAMASHII+NATIONS+STORE+TOKYO+1-1+Kanda+Hanaokacho",
+          badges: ["Recomendada"]
         },
         {
           time: "18:30",
@@ -1994,23 +2113,86 @@ window.ITINERARY = {
       ]}
     ],
     phrases: [
-      { jp: "Ohayō gozaimasu", es: "Buenos días", when: "Por la mañana" },
-      { jp: "Konnichiwa", es: "Hola / buenas tardes", when: "Durante el día" },
-      { jp: "Konbanwa", es: "Buenas noches", when: "Al llegar de noche" },
-      { jp: "Arigatō gozaimasu", es: "Gracias", when: "La versión larga es más formal" },
-      { jp: "Sumimasen", es: "Disculpe / perdón", when: "Para llamar la atención o disculparse" },
-      { jp: "Onegaishimasu", es: "Por favor", when: "Suena educado al instante" },
-      { jp: "Kore kudasai", es: "Esto, por favor", when: "Al comprar: señala y dilo" },
-      { jp: "Ikura desu ka?", es: "¿Cuánto cuesta?", when: "Tiendas y mercados" },
-      { jp: "Daijōbu desu", es: "Está bien / no, gracias", when: "Para rechazar con amabilidad" },
-      { jp: "Eigo wakarimasu ka?", es: "¿Habla inglés?", when: "Antes de pedir ayuda" },
-      { jp: "Toire wa doko desu ka?", es: "¿Dónde está el baño?", when: "Cuando haga falta" },
-      { jp: "Itadakimasu", es: "Buen provecho", when: "Antes de comer" },
-      { jp: "Oishii desu!", es: "¡Delicioso!", when: "Durante la comida" },
-      { jp: "Gochisōsama deshita", es: "Gracias por la comida", when: "Al terminar" },
-      { jp: "Kampai!", es: "¡Salud!", when: "Al brindar" },
-      { jp: "Yoroshiku onegaishimasu", es: "Mucho gusto", when: "Al presentarse o pedir un favor" },
-      { jp: "Tasukete!", es: "¡Ayuda!", when: "Emergencias" }
+      { kana: "おはようございます", jp: "Ohayō gozaimasu", es: "Buenos días", cat: "Saludos", audio: "audio/p01.mp3" },
+      { kana: "こんにちは", jp: "Konnichiwa", es: "Hola", cat: "Saludos", audio: "audio/p02.mp3" },
+      { kana: "こんばんは", jp: "Konbanwa", es: "Buenas noches", cat: "Saludos", audio: "audio/p03.mp3" },
+      { kana: "さようなら", jp: "Sayōnara", es: "Adiós", cat: "Saludos", audio: "audio/p04.mp3" },
+      { kana: "また明日", jp: "Mata ashita", es: "Hasta mañana", cat: "Saludos", audio: "audio/p05.mp3" },
+      { kana: "はじめまして", jp: "Hajimemashite", es: "Mucho gusto", cat: "Saludos", audio: "audio/p06.mp3" },
+      { kana: "よろしくお願いします", jp: "Yoroshiku onegaishimasu", es: "Encantado, cuento con usted", cat: "Saludos", audio: "audio/p07.mp3" },
+      { kana: "お元気ですか", jp: "Ogenki desu ka", es: "¿Cómo está?", cat: "Saludos", audio: "audio/p08.mp3" },
+      { kana: "元気です", jp: "Genki desu", es: "Estoy bien", cat: "Saludos", audio: "audio/p09.mp3" },
+      { kana: "はい", jp: "Hai", es: "Sí", cat: "Cortesía", audio: "audio/p10.mp3" },
+      { kana: "いいえ", jp: "Iie", es: "No", cat: "Cortesía", audio: "audio/p11.mp3" },
+      { kana: "ありがとうございます", jp: "Arigatō gozaimasu", es: "Gracias", cat: "Cortesía", audio: "audio/p12.mp3" },
+      { kana: "どういたしまして", jp: "Dō itashimashite", es: "De nada", cat: "Cortesía", audio: "audio/p13.mp3" },
+      { kana: "すみません", jp: "Sumimasen", es: "Disculpe, perdón", cat: "Cortesía", audio: "audio/p14.mp3" },
+      { kana: "ごめんなさい", jp: "Gomen nasai", es: "Lo siento", cat: "Cortesía", audio: "audio/p15.mp3" },
+      { kana: "お願いします", jp: "Onegaishimasu", es: "Por favor", cat: "Cortesía", audio: "audio/p16.mp3" },
+      { kana: "大丈夫です", jp: "Daijōbu desu", es: "Está bien, no gracias", cat: "Cortesía", audio: "audio/p17.mp3" },
+      { kana: "わかりました", jp: "Wakarimashita", es: "Entendido", cat: "Cortesía", audio: "audio/p18.mp3" },
+      { kana: "わかりません", jp: "Wakarimasen", es: "No entiendo", cat: "Cortesía", audio: "audio/p19.mp3" },
+      { kana: "もう一度お願いします", jp: "Mō ichido onegaishimasu", es: "Otra vez, por favor", cat: "Cortesía", audio: "audio/p20.mp3" },
+      { kana: "ゆっくりお願いします", jp: "Yukkuri onegaishimasu", es: "Más despacio, por favor", cat: "Cortesía", audio: "audio/p21.mp3" },
+      { kana: "英語は話せますか", jp: "Eigo wa hanasemasu ka", es: "¿Habla inglés?", cat: "Cortesía", audio: "audio/p22.mp3" },
+      { kana: "日本語がわかりません", jp: "Nihongo ga wakarimasen", es: "No entiendo japonés", cat: "Cortesía", audio: "audio/p23.mp3" },
+      { kana: "失礼します", jp: "Shitsurei shimasu", es: "Con permiso", cat: "Cortesía", audio: "audio/p24.mp3" },
+      { kana: "これをください", jp: "Kore o kudasai", es: "Esto, por favor", cat: "Compras", audio: "audio/p25.mp3" },
+      { kana: "これは何ですか", jp: "Kore wa nan desu ka", es: "¿Qué es esto?", cat: "Compras", audio: "audio/p26.mp3" },
+      { kana: "いくらですか", jp: "Ikura desu ka", es: "¿Cuánto cuesta?", cat: "Compras", audio: "audio/p27.mp3" },
+      { kana: "安いですか", jp: "Yasui desu ka", es: "¿Es barato?", cat: "Compras", audio: "audio/p28.mp3" },
+      { kana: "高すぎます", jp: "Takasugimasu", es: "Es demasiado caro", cat: "Compras", audio: "audio/p29.mp3" },
+      { kana: "カードでお願いします", jp: "Kādo de onegaishimasu", es: "Con tarjeta, por favor", cat: "Compras", audio: "audio/p30.mp3" },
+      { kana: "現金でお願いします", jp: "Genkin de onegaishimasu", es: "En efectivo, por favor", cat: "Compras", audio: "audio/p31.mp3" },
+      { kana: "袋はいりません", jp: "Fukuro wa irimasen", es: "No necesito bolsa", cat: "Compras", audio: "audio/p32.mp3" },
+      { kana: "レシートをお願いします", jp: "Reshīto o onegaishimasu", es: "El recibo, por favor", cat: "Compras", audio: "audio/p33.mp3" },
+      { kana: "見ているだけです", jp: "Mite iru dake desu", es: "Solo estoy mirando", cat: "Compras", audio: "audio/p34.mp3" },
+      { kana: "写真を撮ってもいいですか", jp: "Shashin o totte mo ii desu ka", es: "¿Puedo tomar una foto?", cat: "Compras", audio: "audio/p35.mp3" },
+      { kana: "予約しています", jp: "Yoyaku shite imasu", es: "Tengo una reserva", cat: "Compras", audio: "audio/p36.mp3" },
+      { kana: "いただきます", jp: "Itadakimasu", es: "Buen provecho", cat: "Comida", audio: "audio/p37.mp3" },
+      { kana: "ごちそうさまでした", jp: "Gochisōsama deshita", es: "Gracias por la comida", cat: "Comida", audio: "audio/p38.mp3" },
+      { kana: "おいしいです", jp: "Oishii desu", es: "Está rico", cat: "Comida", audio: "audio/p39.mp3" },
+      { kana: "お水をください", jp: "Omizu o kudasai", es: "Agua, por favor", cat: "Comida", audio: "audio/p40.mp3" },
+      { kana: "おすすめは何ですか", jp: "Osusume wa nan desu ka", es: "¿Qué recomienda?", cat: "Comida", audio: "audio/p41.mp3" },
+      { kana: "これをお願いします", jp: "Kore o onegaishimasu", es: "Este, por favor", cat: "Comida", audio: "audio/p42.mp3" },
+      { kana: "お会計お願いします", jp: "Okaikei onegaishimasu", es: "La cuenta, por favor", cat: "Comida", audio: "audio/p43.mp3" },
+      { kana: "辛いですか", jp: "Karai desu ka", es: "¿Pica?", cat: "Comida", audio: "audio/p44.mp3" },
+      { kana: "アレルギーがあります", jp: "Arerugī ga arimasu", es: "Tengo alergia", cat: "Comida", audio: "audio/p45.mp3" },
+      { kana: "乾杯", jp: "Kanpai", es: "Salud", cat: "Comida", audio: "audio/p46.mp3" },
+      { kana: "トイレはどこですか", jp: "Toire wa doko desu ka", es: "¿Dónde está el baño?", cat: "Lugares", audio: "audio/p47.mp3" },
+      { kana: "駅はどこですか", jp: "Eki wa doko desu ka", es: "¿Dónde está la estación?", cat: "Lugares", audio: "audio/p48.mp3" },
+      { kana: "まっすぐ", jp: "Massugu", es: "Derecho", cat: "Lugares", audio: "audio/p49.mp3" },
+      { kana: "右", jp: "Migi", es: "Derecha", cat: "Lugares", audio: "audio/p50.mp3" },
+      { kana: "左", jp: "Hidari", es: "Izquierda", cat: "Lugares", audio: "audio/p51.mp3" },
+      { kana: "ここ", jp: "Koko", es: "Aquí", cat: "Lugares", audio: "audio/p52.mp3" },
+      { kana: "あそこ", jp: "Asoko", es: "Allá", cat: "Lugares", audio: "audio/p53.mp3" },
+      { kana: "近いですか", jp: "Chikai desu ka", es: "¿Queda cerca?", cat: "Lugares", audio: "audio/p54.mp3" },
+      { kana: "道に迷いました", jp: "Michi ni mayoimashita", es: "Estoy perdido", cat: "Lugares", audio: "audio/p55.mp3" },
+      { kana: "手伝ってください", jp: "Tetsudatte kudasai", es: "Ayúdeme, por favor", cat: "Lugares", audio: "audio/p56.mp3" },
+      { kana: "この電車はどこへ行きますか", jp: "Kono densha wa doko e ikimasu ka", es: "¿Adónde va este tren?", cat: "Tren y taxi", audio: "audio/p57.mp3" },
+      { kana: "次は何駅ですか", jp: "Tsugi wa nani eki desu ka", es: "¿Cuál es la próxima estación?", cat: "Tren y taxi", audio: "audio/p58.mp3" },
+      { kana: "ここで降ります", jp: "Koko de orimasu", es: "Me bajo aquí", cat: "Tren y taxi", audio: "audio/p59.mp3" },
+      { kana: "ここで止めてください", jp: "Koko de tomete kudasai", es: "Pare aquí", cat: "Tren y taxi", audio: "audio/p60.mp3" },
+      { kana: "切符を一枚ください", jp: "Kippu o ichimai kudasai", es: "Un boleto, por favor", cat: "Tren y taxi", audio: "audio/p61.mp3" },
+      { kana: "遅れていますか", jp: "Okurete imasu ka", es: "¿Va retrasado?", cat: "Tren y taxi", audio: "audio/p62.mp3" },
+      { kana: "助けて", jp: "Tasukete", es: "Ayuda", cat: "Emergencia", audio: "audio/p63.mp3" },
+      { kana: "警察を呼んでください", jp: "Keisatsu o yonde kudasai", es: "Llame a la policía", cat: "Emergencia", audio: "audio/p64.mp3" },
+      { kana: "病院はどこですか", jp: "Byōin wa doko desu ka", es: "¿Dónde está el hospital?", cat: "Emergencia", audio: "audio/p65.mp3" },
+      { kana: "気分が悪いです", jp: "Kibun ga warui desu", es: "Me siento mal", cat: "Emergencia", audio: "audio/p66.mp3" },
+      { kana: "財布をなくしました", jp: "Saifu o nakushimashita", es: "Perdí la billetera", cat: "Emergencia", audio: "audio/p67.mp3" },
+      { kana: "一", jp: "Ichi", es: "Uno", cat: "Números", audio: "audio/p68.mp3" },
+      { kana: "二", jp: "Ni", es: "Dos", cat: "Números", audio: "audio/p69.mp3" },
+      { kana: "三", jp: "San", es: "Tres", cat: "Números", audio: "audio/p70.mp3" },
+      { kana: "四", jp: "Yon", es: "Cuatro", cat: "Números", audio: "audio/p71.mp3" },
+      { kana: "五", jp: "Go", es: "Cinco", cat: "Números", audio: "audio/p72.mp3" },
+      { kana: "六", jp: "Roku", es: "Seis", cat: "Números", audio: "audio/p73.mp3" },
+      { kana: "七", jp: "Nana", es: "Siete", cat: "Números", audio: "audio/p74.mp3" },
+      { kana: "八", jp: "Hachi", es: "Ocho", cat: "Números", audio: "audio/p75.mp3" },
+      { kana: "九", jp: "Kyū", es: "Nueve", cat: "Números", audio: "audio/p76.mp3" },
+      { kana: "十", jp: "Jū", es: "Diez", cat: "Números", audio: "audio/p77.mp3" },
+      { kana: "百", jp: "Hyaku", es: "Cien", cat: "Números", audio: "audio/p78.mp3" },
+      { kana: "千", jp: "Sen", es: "Mil", cat: "Números", audio: "audio/p79.mp3" },
+      { kana: "万", jp: "Man", es: "Diez mil", cat: "Números", audio: "audio/p80.mp3" }
     ],
     links: [
       { name: "JR Pass oficial", url: "https://japanrailpass.net/en/" },
