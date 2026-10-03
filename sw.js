@@ -1,10 +1,10 @@
-const CACHE = "japon-itinerario-v42";
+const CACHE = "japon-itinerario-v43";
 const FILES = [
   "./",
   "./index.html",
-  "./css/styles.css?v=42",
-  "./js/app.js?v=42",
-  "./js/itinerary.js?v=42",
+  "./css/styles.css?v=43",
+  "./js/app.js?v=43",
+  "./js/itinerary.js?v=43",
   "./manifest.webmanifest",
   "./icon.svg",
   "./docs/chente-tarjeta-seguro.pdf",
@@ -180,7 +180,9 @@ const FILES = [
   "./audio/v169.mp3",
   "./audio/v170.mp3",
   "./audio/v171.mp3",
-  "./audio/v172.mp3"
+  "./audio/v172.mp3",
+  "./audio/v173.mp3",
+  "./audio/v174.mp3"
 ];
 
 self.addEventListener("install", function (event) {

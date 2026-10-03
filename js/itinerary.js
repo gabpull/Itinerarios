@@ -2236,6 +2236,8 @@ window.ITINERARY = {
       { kana: "ドーナツ・クッキー", jp: "Doonatsu · Kukkii", es: "Dona · galleta", cat: "Comer y beber", audio: "audio/v121.mp3" },
       { kana: "いちご・チョコレート", jp: "Ichigo · Chokoreeto", es: "Fresa · chocolate", cat: "Comer y beber", audio: "audio/v122.mp3" },
       { kana: "甘い", jp: "Amai", es: "Dulce", cat: "Comer y beber", audio: "audio/v123.mp3" },
+      { kana: "辛い", jp: "Karai", es: "Picante", cat: "Comer y beber", audio: "audio/v173.mp3" },
+      { kana: "辛くない", jp: "Karakunai", es: "No picante", cat: "Comer y beber", audio: "audio/v174.mp3" },
       { kana: "安い・高い", jp: "Yasui · Takai", es: "Barato · caro", cat: "Comprar y opinar", audio: "audio/v124.mp3" },
       { kana: "大きい・小さい", jp: "Ookii · Chiisai", es: "Grande · pequeño", cat: "Comprar y opinar", audio: "audio/v125.mp3" },
       { kana: "新しい・古い", jp: "Atarashii · Furui", es: "Nuevo · viejo", cat: "Comprar y opinar", audio: "audio/v126.mp3" },
