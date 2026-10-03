@@ -61,8 +61,10 @@
     screenSos: document.getElementById("screen-sos"),
     screenYen: document.getElementById("screen-yen"),
     yenRate: document.getElementById("yen-rate"),
+    usdRate: document.getElementById("usd-rate"),
     yenAmount: document.getElementById("yen-amount"),
     crcAmount: document.getElementById("crc-amount"),
+    usdAmount: document.getElementById("usd-amount"),
     yenCrcText: document.getElementById("yen-crc-text"),
     yenEq: document.getElementById("yen-eq"),
     timeCr: document.getElementById("time-cr"),
@@ -99,6 +101,7 @@
   let view = savedPlace && ["day", "guide", "shops", "phrases", "food", "yen", "sos"].indexOf(savedPlace.view) >= 0 ? savedPlace.view : "day";
   let hideShops = loadHideShops();
   let foodCity = savedFoodCity(savedPlace);
+  let phraseCat = savedPhraseCat(savedPlace);
   let doneShops = loadDoneShops();
   let phraseAudio = null;
   let phraseButton = null;
@@ -120,6 +123,7 @@
   el.navYen.addEventListener("click", function () { setView("yen"); });
   el.navSos.addEventListener("click", function () { setView("sos"); });
   el.yenRate.addEventListener("input", function () { paintYen("yen"); });
+  el.usdRate.addEventListener("input", function () { paintYen("yen"); });
   el.yenAmount.addEventListener("input", function () {
     groupAmount(el.yenAmount);
     paintYen("yen");
@@ -128,7 +132,12 @@
     groupAmount(el.crcAmount);
     paintYen("crc");
   });
+  el.usdAmount.addEventListener("input", function () {
+    groupAmount(el.usdAmount);
+    paintYen("usd");
+  });
   el.yenRate.value = formatRate(loadYenRate());
+  el.usdRate.value = formatRate(loadUsdRate());
   el.hereLocate.addEventListener("click", function () { loadHereTemp(); });
   showCachedSpot();
   paintClocks();
@@ -228,12 +237,26 @@
     return place.food === "Todas" || cities.indexOf(place.food) >= 0 ? place.food : "Todas";
   }
 
+  function phraseCats() {
+    const cats = [];
+    data.guide.phrases.forEach(function (row) {
+      if (cats.indexOf(row.cat) < 0) cats.push(row.cat);
+    });
+    return cats;
+  }
+
+  function savedPhraseCat(place) {
+    if (!place || typeof place.phrase !== "string") return "Todas";
+    return place.phrase === "Todas" || phraseCats().indexOf(place.phrase) >= 0 ? place.phrase : "Todas";
+  }
+
   function remember() {
     try {
       localStorage.setItem("japon-place", JSON.stringify({
         date: days[index].date,
         view: view,
         food: foodCity,
+        phrase: phraseCat,
         y: Math.round(window.scrollY)
       }));
     } catch (error) {}
@@ -738,6 +761,21 @@
   function renderPhrases() {
     const root = el.screenPhrases;
     root.replaceChildren();
+    const cats = ["Todas"].concat(phraseCats());
+    const chips = document.createElement("div");
+    chips.className = "chips";
+    cats.forEach(function (cat) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "chip" + (cat === phraseCat ? " on" : "");
+      button.textContent = cat;
+      button.addEventListener("click", function () {
+        phraseCat = cat;
+        renderPhrases();
+        remember();
+      });
+      chips.append(button);
+    });
     const search = document.createElement("div");
     search.className = "search";
     const input = document.createElement("input");
@@ -754,6 +792,7 @@
     function paint() {
       const query = fold(input.value);
       const rows = data.guide.phrases.filter(function (row) {
+        if (phraseCat !== "Todas" && row.cat !== phraseCat) return false;
         if (!query) return true;
         return fold([row.kana, row.jp, row.es, row.cat].join(" ")).indexOf(query) >= 0;
       });
@@ -766,7 +805,7 @@
       }
       let lastCat = "";
       rows.forEach(function (row) {
-        if (!query && row.cat !== lastCat) {
+        if (phraseCat === "Todas" && !query && row.cat !== lastCat) {
           lastCat = row.cat;
           const grp = document.createElement("div");
           grp.className = "grp";
@@ -809,7 +848,7 @@
     }
 
     input.addEventListener("input", paint);
-    root.append(search, count, list);
+    root.append(chips, search, count, list);
     paint();
   }
 
@@ -866,6 +905,18 @@
 
   function saveYenRate(rate) {
     try { localStorage.setItem("japon-yen-rate", String(rate)); } catch (error) {}
+  }
+
+  function loadUsdRate() {
+    try {
+      const saved = parseNum(localStorage.getItem("japon-usd-rate"), "rate");
+      if (saved && saved > 0) return saved;
+    } catch (error) {}
+    return 505;
+  }
+
+  function saveUsdRate(rate) {
+    try { localStorage.setItem("japon-usd-rate", String(rate)); } catch (error) {}
   }
 
   function parseNum(value, mode) {
@@ -1117,38 +1168,66 @@
   }
 
   function paintYen(source) {
-    const rate = parseNum(el.yenRate.value, "rate");
-    if (rate && rate > 0) saveYenRate(rate);
+    const yenRate = parseNum(el.yenRate.value, "rate");
+    const usdRate = parseNum(el.usdRate.value, "rate");
+    if (yenRate && yenRate > 0) saveYenRate(yenRate);
+    if (usdRate && usdRate > 0) saveUsdRate(usdRate);
     const yen = parseNum(el.yenAmount.value, "money");
     const crc = parseNum(el.crcAmount.value, "money");
-    if (!rate || rate <= 0) {
+    const usd = parseNum(el.usdAmount.value, "money");
+    if (!yenRate || yenRate <= 0 || !usdRate || usdRate <= 0) {
       el.yenCrcText.textContent = "₡0";
       el.yenEq.textContent = "Escribí el cambio";
       return;
     }
+
+    let nextYen = null;
+    let nextCrc = null;
+    let nextUsd = null;
+
     if (source === "crc") {
       if (crc == null) {
         el.yenAmount.value = "";
+        el.usdAmount.value = "";
         el.yenCrcText.textContent = "₡0";
-        el.yenEq.textContent = "¥0";
+        el.yenEq.textContent = "¥0 · $0";
         return;
       }
-      const nextYen = crc / rate;
+      nextCrc = crc;
+      nextYen = crc / yenRate;
+      nextUsd = crc / usdRate;
       el.yenAmount.value = formatAmount(nextYen);
-      el.yenCrcText.textContent = "₡" + formatMoney(crc);
-      el.yenEq.textContent = "¥" + formatMoney(nextYen);
-      return;
+      el.usdAmount.value = formatAmount(nextUsd);
+    } else if (source === "usd") {
+      if (usd == null) {
+        el.yenAmount.value = "";
+        el.crcAmount.value = "";
+        el.yenCrcText.textContent = "₡0";
+        el.yenEq.textContent = "¥0 · $0";
+        return;
+      }
+      nextUsd = usd;
+      nextCrc = usd * usdRate;
+      nextYen = nextCrc / yenRate;
+      el.crcAmount.value = formatAmount(nextCrc);
+      el.yenAmount.value = formatAmount(nextYen);
+    } else {
+      if (yen == null) {
+        el.crcAmount.value = "";
+        el.usdAmount.value = "";
+        el.yenCrcText.textContent = "₡0";
+        el.yenEq.textContent = "¥0 · $0";
+        return;
+      }
+      nextYen = yen;
+      nextCrc = yen * yenRate;
+      nextUsd = nextCrc / usdRate;
+      el.crcAmount.value = formatAmount(nextCrc);
+      el.usdAmount.value = formatAmount(nextUsd);
     }
-    if (yen == null) {
-      el.crcAmount.value = "";
-      el.yenCrcText.textContent = "₡0";
-      el.yenEq.textContent = "¥0";
-      return;
-    }
-    const nextCrc = yen * rate;
-    el.crcAmount.value = formatAmount(nextCrc);
+
     el.yenCrcText.textContent = "₡" + formatMoney(nextCrc);
-    el.yenEq.textContent = "¥" + formatMoney(yen);
+    el.yenEq.textContent = "¥" + formatMoney(nextYen) + " · $" + formatMoney(nextUsd);
   }
 
   function renderFood() {

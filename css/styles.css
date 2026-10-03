@@ -802,6 +802,17 @@ button { background: none; border: 0; padding: 0; cursor: pointer; }
 
 .fx-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
+.fx-trio {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.fx-trio input {
+  padding: 12px 8px;
+  font-size: 18px;
+}
+
 .fx-out {
   margin: 0;
   padding: 16px 12px;
