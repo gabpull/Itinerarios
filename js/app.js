@@ -62,9 +62,11 @@
     screenYen: document.getElementById("screen-yen"),
     yenRate: document.getElementById("yen-rate"),
     usdRate: document.getElementById("usd-rate"),
+    eurRate: document.getElementById("eur-rate"),
     yenAmount: document.getElementById("yen-amount"),
     crcAmount: document.getElementById("crc-amount"),
     usdAmount: document.getElementById("usd-amount"),
+    eurAmount: document.getElementById("eur-amount"),
     yenCrcText: document.getElementById("yen-crc-text"),
     yenEq: document.getElementById("yen-eq"),
     timeCr: document.getElementById("time-cr"),
@@ -124,6 +126,7 @@
   el.navSos.addEventListener("click", function () { setView("sos"); });
   el.yenRate.addEventListener("input", function () { paintYen("yen"); });
   el.usdRate.addEventListener("input", function () { paintYen("yen"); });
+  el.eurRate.addEventListener("input", function () { paintYen("yen"); });
   el.yenAmount.addEventListener("input", function () {
     groupAmount(el.yenAmount);
     paintYen("yen");
@@ -136,8 +139,13 @@
     groupAmount(el.usdAmount);
     paintYen("usd");
   });
+  el.eurAmount.addEventListener("input", function () {
+    groupAmount(el.eurAmount);
+    paintYen("eur");
+  });
   el.yenRate.value = formatRate(loadYenRate());
   el.usdRate.value = formatRate(loadUsdRate());
+  el.eurRate.value = formatRate(loadEurRate());
   el.hereLocate.addEventListener("click", function () { loadHereTemp(); });
   showCachedSpot();
   paintClocks();
@@ -919,6 +927,18 @@
     try { localStorage.setItem("japon-usd-rate", String(rate)); } catch (error) {}
   }
 
+  function loadEurRate() {
+    try {
+      const saved = parseNum(localStorage.getItem("japon-eur-rate"), "rate");
+      if (saved && saved > 0) return saved;
+    } catch (error) {}
+    return 517;
+  }
+
+  function saveEurRate(rate) {
+    try { localStorage.setItem("japon-eur-rate", String(rate)); } catch (error) {}
+  }
+
   function parseNum(value, mode) {
     const text = String(value == null ? "" : value).trim().replace(/\s/g, "");
     if (!text) return null;
@@ -1170,12 +1190,15 @@
   function paintYen(source) {
     const yenRate = parseNum(el.yenRate.value, "rate");
     const usdRate = parseNum(el.usdRate.value, "rate");
+    const eurRate = parseNum(el.eurRate.value, "rate");
     if (yenRate && yenRate > 0) saveYenRate(yenRate);
     if (usdRate && usdRate > 0) saveUsdRate(usdRate);
+    if (eurRate && eurRate > 0) saveEurRate(eurRate);
     const yen = parseNum(el.yenAmount.value, "money");
     const crc = parseNum(el.crcAmount.value, "money");
     const usd = parseNum(el.usdAmount.value, "money");
-    if (!yenRate || yenRate <= 0 || !usdRate || usdRate <= 0) {
+    const eur = parseNum(el.eurAmount.value, "money");
+    if (!yenRate || yenRate <= 0 || !usdRate || usdRate <= 0 || !eurRate || eurRate <= 0) {
       el.yenCrcText.textContent = "₡0";
       el.yenEq.textContent = "Escribí el cambio";
       return;
@@ -1184,50 +1207,76 @@
     let nextYen = null;
     let nextCrc = null;
     let nextUsd = null;
+    let nextEur = null;
 
     if (source === "crc") {
       if (crc == null) {
         el.yenAmount.value = "";
         el.usdAmount.value = "";
+        el.eurAmount.value = "";
         el.yenCrcText.textContent = "₡0";
-        el.yenEq.textContent = "¥0 · $0";
+        el.yenEq.textContent = "¥0 · $0 · €0";
         return;
       }
       nextCrc = crc;
       nextYen = crc / yenRate;
       nextUsd = crc / usdRate;
+      nextEur = crc / eurRate;
       el.yenAmount.value = formatAmount(nextYen);
       el.usdAmount.value = formatAmount(nextUsd);
+      el.eurAmount.value = formatAmount(nextEur);
     } else if (source === "usd") {
       if (usd == null) {
         el.yenAmount.value = "";
         el.crcAmount.value = "";
+        el.eurAmount.value = "";
         el.yenCrcText.textContent = "₡0";
-        el.yenEq.textContent = "¥0 · $0";
+        el.yenEq.textContent = "¥0 · $0 · €0";
         return;
       }
       nextUsd = usd;
       nextCrc = usd * usdRate;
       nextYen = nextCrc / yenRate;
+      nextEur = nextCrc / eurRate;
       el.crcAmount.value = formatAmount(nextCrc);
       el.yenAmount.value = formatAmount(nextYen);
+      el.eurAmount.value = formatAmount(nextEur);
+    } else if (source === "eur") {
+      if (eur == null) {
+        el.yenAmount.value = "";
+        el.crcAmount.value = "";
+        el.usdAmount.value = "";
+        el.yenCrcText.textContent = "₡0";
+        el.yenEq.textContent = "¥0 · $0 · €0";
+        return;
+      }
+      nextEur = eur;
+      nextCrc = eur * eurRate;
+      nextYen = nextCrc / yenRate;
+      nextUsd = nextCrc / usdRate;
+      el.crcAmount.value = formatAmount(nextCrc);
+      el.yenAmount.value = formatAmount(nextYen);
+      el.usdAmount.value = formatAmount(nextUsd);
     } else {
       if (yen == null) {
         el.crcAmount.value = "";
         el.usdAmount.value = "";
+        el.eurAmount.value = "";
         el.yenCrcText.textContent = "₡0";
-        el.yenEq.textContent = "¥0 · $0";
+        el.yenEq.textContent = "¥0 · $0 · €0";
         return;
       }
       nextYen = yen;
       nextCrc = yen * yenRate;
       nextUsd = nextCrc / usdRate;
+      nextEur = nextCrc / eurRate;
       el.crcAmount.value = formatAmount(nextCrc);
       el.usdAmount.value = formatAmount(nextUsd);
+      el.eurAmount.value = formatAmount(nextEur);
     }
 
     el.yenCrcText.textContent = "₡" + formatMoney(nextCrc);
-    el.yenEq.textContent = "¥" + formatMoney(nextYen) + " · $" + formatMoney(nextUsd);
+    el.yenEq.textContent = "¥" + formatMoney(nextYen) + " · $" + formatMoney(nextUsd) + " · €" + formatMoney(nextEur);
   }
 
   function renderFood() {

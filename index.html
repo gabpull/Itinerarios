@@ -11,7 +11,7 @@
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icon.svg">
-  <link rel="stylesheet" href="css/styles.css?v=43">
+  <link rel="stylesheet" href="css/styles.css?v=44">
 </head>
 <body>
   <div class="app">
@@ -50,7 +50,7 @@
       <div id="screen-food" hidden></div>
       <div id="screen-sos" hidden></div>
       <div id="screen-yen" hidden>
-        <p class="lead">El cambio se guarda en este teléfono y funciona sin internet. Arranca en ₡2,90 por yen y ₡505 por dólar.</p>
+        <p class="lead">El cambio se guarda en este teléfono y funciona sin internet. Arranca en ₡2,90 por yen, ₡505 por dólar y ₡517 por euro.</p>
         <div class="fx">
           <div class="fx-pair">
             <div class="fx-rate">
@@ -61,8 +61,12 @@
               <span class="fx-kicker">Colones por $1 <a class="fx-link" href="https://www.google.com/search?q=1+dolar+a+colones" target="_blank" rel="noopener noreferrer">Ver</a></span>
               <input id="usd-rate" inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-label="Colones por un dólar">
             </div>
+            <div class="fx-rate">
+              <span class="fx-kicker">Colones por €1 <a class="fx-link" href="https://www.google.com/search?q=1+euro+a+colones" target="_blank" rel="noopener noreferrer">Ver</a></span>
+              <input id="eur-rate" inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-label="Colones por un euro">
+            </div>
           </div>
-          <div class="fx-trio">
+          <div class="fx-money">
             <label>
               <span>Yenes</span>
               <input id="yen-amount" inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Monto en yenes">
@@ -75,10 +79,14 @@
               <span>Dólares</span>
               <input id="usd-amount" inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Monto en dólares">
             </label>
+            <label>
+              <span>Euros</span>
+              <input id="eur-amount" inputmode="decimal" autocomplete="off" placeholder="0" aria-label="Monto en euros">
+            </label>
           </div>
           <p class="fx-out" id="yen-out" aria-live="polite">
             <strong id="yen-crc-text">₡0</strong>
-            <span id="yen-eq">¥0 · $0</span>
+            <span id="yen-eq">¥0 · $0 · €0</span>
           </p>
         </div>
         <div class="wx" aria-label="Hora y temperatura">
@@ -153,7 +161,7 @@
     </div>
   </div>
 
-  <script src="js/itinerary.js?v=43"></script>
-  <script src="js/app.js?v=43"></script>
+  <script src="js/itinerary.js?v=44"></script>
+  <script src="js/app.js?v=44"></script>
 </body>
 </html>
